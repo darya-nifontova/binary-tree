@@ -62,8 +62,39 @@ class BinaryTree {
     }
 
 	remove(data) {
+        var pointer = this.root;
+        var parent = null;
 
-	}
+        if (this.contains(data)) {
+            while (pointer.data != data){
+                parent = pointer;
+                if (data < pointer.data) pointer = pointer.left;
+                else pointer = pointer.right;
+            }
+         
+            if (pointer.right == null && pointer.left == null) {
+                if(parent == null) this.root = null;
+                else {
+                    if(parent.left == pointer) parent.left = null;
+                    else parent.right = null;
+                }
+            }
+
+            if(pointer.left != null && pointer.right == null) {
+                parent.left = pointer.left;  
+            }
+
+            if(pointer.left == null && pointer.right != null) {
+                parent.right = pointer.right;
+            }
+
+            if (pointer.left != null && pointer.right != null) {
+                if(parent.left == pointer) {
+                    parent.left = pointer.left;
+                }   else parent.right = pointer.left; 
+            }
+        }
+    }
 
 	size() {
 
