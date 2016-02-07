@@ -97,8 +97,21 @@ class BinaryTree {
     }
 
 	size() {
-
-	}
+        var count =0;
+        function size(node) {
+            if (node !== null) {
+                if (node.left !== null) {
+                    size(node.left);
+                }
+                if (node.right !== null) {
+                    size(node.right);
+                }
+                count++;
+            }
+        }
+        size(this.root);
+        return count;
+    }
 
 	isEmpty() {
 
